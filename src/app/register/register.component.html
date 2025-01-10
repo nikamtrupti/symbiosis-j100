@@ -1,0 +1,49 @@
+<br>
+<br>
+ <div class="register-container">
+   
+  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+
+      <div>
+        <h2> <ul>Registration </ul></h2>
+<br>
+<br>
+      </div>
+      <div>
+        <label for="customerName">Customer Name</label>
+        <input type="text" id="name" required [(ngModel)]="client.client_name"  name="client_name" #clientName="ngModel" />
+        <div *ngIf="clientName.invalid && clientName.touched">Name is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="email">Email</label><br>
+        <input type="email" id="email"  required [(ngModel)]="client.client_email" name="client_email" #clientEmail="ngModel"/>
+        <div *ngIf="clientEmail.invalid && clientEmail.touched">Valid email is required. </div>
+      </div>
+  
+      <div>
+        <label for="phoneNo">Phone Number</label>
+        <input id="phoneNo" required [(ngModel)]="client.client_mobileno" name="client_mobileno" #clientMobile="ngModel" pattern="^[0-9]{10}$" />
+        <div *ngIf="clientMobile.invalid && clientMobile.touched">Valid 10-digit phone number is required.
+        </div>
+      </div>
+  
+      <div>
+        <label for="password">Password</label><br>
+        <input type="password" id="password"  required [(ngModel)]="client.client_password" name="client_password" #clientPassword="ngModel" minlength="6" >
+        <div *ngIf="clientPassword.invalid && clientPassword.touched"> Password must be at least 6 characters long. </div>
+      </div>
+ <div>
+  <input type="radio" [(ngModel)]="client.clientRole" name="clientRole" value="client"/>Register For Appoitment <br>
+  <input type="radio" [(ngModel)]="client.clientRole" name="clientRole" value="student"/> Register For Cources<br>
+ </div>
+  <br>
+
+  <button type="submit" [disabled]="registerForm.invalid">Register</button>
+
+        <p>Already have an account? <a [routerLink]="['/loginpage']">Login here</a></p> 
+      
+  </form>
+  </div>
+ 

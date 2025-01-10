@@ -1,0 +1,45 @@
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="login-container">
+    <div class="login-card">
+        <h2>Login</h2>
+        <form (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" [(ngModel)]="client.client_email" name="email" placeholder="Enter your email" required #emailField="ngModel" />
+                <div class="error" *ngIf="emailField.touched && emailField.invalid">
+                    Email is required and must be valid.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password"  required [(ngModel)]="client.client_password" name="client_password" #clientPassword="ngModel" minlength="6" >
+                <div *ngIf="clientPassword.invalid && clientPassword.touched"> Password must be at least 6 characters long. </div>
+                </div>
+            
+
+            <div>
+                <input  type="radio" id="appointment" name="loginType" [(ngModel)]="client.clientRole" value="Appointment" required  #loginTypeField="ngModel" />
+                <label for="appointment">Login For Appointment</label>
+            </div>
+            <div>
+                <input type="radio"  id="courses" name="loginType" [(ngModel)]="client.clientRole" value="Courses"  />
+                <label for="courses">Login For Courses</label>
+            </div>
+
+            <div class="error" *ngIf="loginForm.submitted && !client.clientRole">
+                Please select a role to proceed.
+            </div>
+
+            <button type="submit" class="login-btn" >Login</button>
+            <div class="frontpage-link">
+                <p>Don't have an account? <a href="register">Sign-up</a></p>
+            </div>
+        </form>
+    </div>
+</div>
